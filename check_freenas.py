@@ -34,7 +34,7 @@ class Startup(object):
         self._user = user
         self._secret = secret
  
-        self._ep = 'http://%s/api/v1.0' % hostname
+        self._ep = 'https://%s/api/v1.0' % hostname
  
     def request(self, resource, method='GET', data=None):
         if data is None:
@@ -44,6 +44,7 @@ class Startup(object):
                 method,
                 '%s/%s/' % (self._ep, resource),
                 data=json.dumps(data),
+		verify=False,
                 headers={'Content-Type': "application/json"},
                 auth=(self._user, self._secret),
             )
